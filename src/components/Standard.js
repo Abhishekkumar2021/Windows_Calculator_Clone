@@ -81,6 +81,8 @@ const StyledDiv = styled.div`
 			font-size: 2rem;
 			transition: 0.3s ease all;
 			overflow: hidden;
+			align-items: center;
+			justify-content: center;
 			&:active {
 				transform: scale(0.9);
 			}
@@ -99,7 +101,7 @@ const StyledDiv = styled.div`
 	}
 	@media only screen and (max-width: 512px) {
 		.buttons {
-			grid-gap: 5px;
+			grid-gap: 10px;
 		}
 	}
 	@keyframes rotate {

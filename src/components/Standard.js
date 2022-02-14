@@ -81,6 +81,7 @@ const StyledDiv = styled.div`
 			font-size: 2rem;
 			transition: 0.3s ease all;
 			overflow: hidden;
+			display: flex;
 			align-items: center;
 			justify-content: center;
 			&:active {

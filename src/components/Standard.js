@@ -88,14 +88,14 @@ const StyledDiv = styled.div`
 			}
 		}
 		#equal {
-			background: ${(props) => (props.light ? "orange" : "teal")};
+			background: ${(props) => (props.light ? "orange" : "#163e55cb")};
 		}
 	}
-	@media only screen and (max-width: 484px) {
+	@media only screen and (max-width: 512px) {
 		.buttons {
 			grid-gap: 10px;
 			button {
-				border-radius: 40px;
+				border-radius: 30px;
 			}
 		}
 	}

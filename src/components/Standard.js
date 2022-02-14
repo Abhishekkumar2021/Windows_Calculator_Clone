@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import ThemeContext from "./ThemeContext";
+
 import {
 	RiNumber0,
 	RiNumber1,
@@ -29,28 +30,28 @@ import {
 } from "react-icons/fa";
 
 const keys = {
-	modulo: <FaPercent class='icon' />,
-	root: <FaSquareRootAlt class='icon' />,
-	clear: <CgTrashEmpty class='icon' />,
-	remove: <RiDeleteBack2Fill class='icon' />,
-	seven: <RiNumber7 class='icon' />,
-	eight: <RiNumber8 class='icon' />,
-	nine: <RiNumber9 class='icon' />,
-	divide: <FaDivide class='icon' />,
-	four: <RiNumber4 class='icon' />,
-	five: <RiNumber5 class='icon' />,
-	six: <RiNumber6 class='icon' />,
+	modulo: <FaPercent className='icon' />,
+	root: <FaSquareRootAlt className='icon' />,
+	clear: <CgTrashEmpty className='icon' />,
+	remove: <RiDeleteBack2Fill className='icon' />,
+	seven: <RiNumber7 className='icon' />,
+	eight: <RiNumber8 className='icon' />,
+	nine: <RiNumber9 className='icon' />,
+	divide: <FaDivide className='icon' />,
+	four: <RiNumber4 className='icon' />,
+	five: <RiNumber5 className='icon' />,
+	six: <RiNumber6 className='icon' />,
 
-	multiply: <FaTimes class='icon' />,
-	one: <RiNumber1 class='icon' />,
-	two: <RiNumber2 class='icon' />,
-	three: <RiNumber3 class='icon' />,
-	add: <FaPlus class='icon' />,
-	zero: <RiNumber0 class='icon' />,
-	period: <BsDot class='icon' />,
+	multiply: <FaTimes className='icon' />,
+	one: <RiNumber1 className='icon' />,
+	two: <RiNumber2 className='icon' />,
+	three: <RiNumber3 className='icon' />,
+	add: <FaPlus className='icon' />,
+	zero: <RiNumber0 className='icon' />,
+	period: <BsDot className='icon' />,
 
-	substract: <FaMinus class='icon' />,
-	equal: <FaEquals class='icon' />,
+	substract: <FaMinus className='icon' />,
+	equal: <FaEquals className='icon' />,
 };
 const StyledDiv = styled.div`
 	padding: 20px;
@@ -62,6 +63,8 @@ const StyledDiv = styled.div`
 		padding: 10px;
 		margin: 10px 0;
 		height: 150px;
+		text-align: right;
+		font-size: 32px;
 	}
 	.buttons {
 		flex-grow: 1;
@@ -81,27 +84,27 @@ const StyledDiv = styled.div`
 			&:active {
 				transform: scale(0.9);
 			}
+			.icon {
+				transition: 0.3s ease all;
+			}
 			&:hover {
 				.icon {
-					animation: rotate 0.6s ease;
+					transform: scale(1.5);
 				}
 			}
 		}
 		#equal {
-			background: ${(props) => (props.light ? "orange" : "#163e55cb")};
+			background: ${(props) => (props.light ? "orange" : "teal")};
 		}
 	}
 	@media only screen and (max-width: 512px) {
 		.buttons {
-			grid-gap: 10px;
-			button {
-				border-radius: 30px;
-			}
+			grid-gap: 5px;
 		}
 	}
 	@keyframes rotate {
 		from {
-			transform: rotate(0deg) scale(1.5);
+			transform: rotate(0deg) scale(1.3);
 		}
 		to {
 			transform: rotate(359deg) scale(1);
@@ -109,13 +112,134 @@ const StyledDiv = styled.div`
 	}
 `;
 export default function Standard() {
+	const calculate = (str) => {
+		let a, b;
+		if (str.includes("-")) {
+			let arr = str.split("-");
+			if (arr.length === 3) {
+				a = -parseFloat(arr[1]);
+				b = -parseFloat(arr[2]);
+				return a + b;
+			} else if (arr.length === 2 && arr[0]) {
+				a = parseFloat(arr[0]);
+				b = -parseFloat(arr[1]);
+				return a + b;
+			}
+		}
+		if (str.includes("+")) {
+			let arr = str.split("+");
+			if (arr.length === 3) {
+				a = parseFloat(arr[1]);
+				b = parseFloat(arr[2]);
+				return a + b;
+			} else if (arr.length === 2 && arr[0]) {
+				a = parseFloat(arr[0]);
+				b = parseFloat(arr[1]);
+				return a + b;
+			}
+		}
+		if (str.includes("*")) {
+			let arr = str.split("*");
+
+			a = parseFloat(arr[0]);
+			b = parseFloat(arr[1]);
+			return a * b;
+		}
+		if (str.includes("/")) {
+			let arr = str.split("/");
+
+			a = parseFloat(arr[0]);
+			b = parseFloat(arr[1]);
+			if (b === 0) return "Not Define";
+			else return a / b;
+		}
+		if (str.includes("%")) {
+			let arr = str.split("%");
+
+			a = parseFloat(arr[0]);
+			b = parseFloat(arr[1]);
+			return a % b;
+		}
+		return result;
+	};
+
+	const [result, setResult] = useState("");
+
 	const [light] = useContext(ThemeContext);
+	const handleClick = (key) => {
+		switch (key) {
+			case "modulo":
+				setResult(calculate(result) + "%");
+				break;
+			case "root":
+				setResult(Math.sqrt(parseFloat(result)));
+				break;
+			case "clear":
+				setResult("");
+				break;
+			case "remove":
+				setResult(result.slice(0, result.length - 1));
+				break;
+			case "seven":
+				setResult(result + "7");
+				break;
+			case "eight":
+				setResult(result + "8");
+				break;
+			case "nine":
+				setResult(result + "9");
+				break;
+			case "divide":
+				setResult(calculate(result) + "/");
+				break;
+			case "four":
+				setResult(result + "4");
+				break;
+			case "five":
+				setResult(result + "5");
+				break;
+			case "six":
+				setResult(result + "6");
+				break;
+
+			case "multiply":
+				setResult(calculate(result) + "*");
+				break;
+			case "one":
+				setResult(result + "1");
+				break;
+			case "two":
+				setResult(result + "2");
+				break;
+			case "three":
+				setResult(result + "3");
+				break;
+			case "add":
+				setResult(calculate(result) + "+");
+				break;
+			case "zero":
+				setResult(result + "0");
+				break;
+			case "period":
+				setResult(result + ".");
+				break;
+
+			case "substract":
+				setResult(calculate(result) + "-");
+				break;
+			case "equal":
+				setResult(calculate(result));
+				break;
+			default:
+				break;
+		}
+	};
 	return (
 		<StyledDiv light={light}>
-			<div className='screen'></div>
+			<div className='screen'>{result}</div>
 			<div className='buttons'>
 				{Object.keys(keys).map((key) => (
-					<button key={key} id={key}>
+					<button key={key} id={key} onClick={() => handleClick(key)}>
 						{keys[key]}
 					</button>
 				))}

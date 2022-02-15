@@ -17,7 +17,7 @@ import {
 import { BsDot } from "react-icons/bs";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 
-import { CgTrashEmpty } from "react-icons/cg";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 import {
 	FaDivide,
@@ -31,8 +31,14 @@ import {
 
 const keys = {
 	modulo: <FaPercent className='icon' />,
-	root: <FaSquareRootAlt className='icon' />,
-	clear: <CgTrashEmpty className='icon' />,
+	root: (
+		<img
+			src='https://img.icons8.com/ios/50/000000/square-root.png'
+			className='icon'
+			alt='icon'
+		/>
+	),
+	clear: <AiTwotoneDelete className='icon' />,
 	remove: <RiDeleteBack2Fill className='icon' />,
 	seven: <RiNumber7 className='icon' />,
 	eight: <RiNumber8 className='icon' />,

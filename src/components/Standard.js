@@ -92,14 +92,6 @@ const StyledDiv = styled.div`
 			&:active {
 				transform: scale(0.9);
 			}
-			.icon {
-				transition: 0.3s ease all;
-			}
-			&:hover {
-				.icon {
-					transform: scale(1.5);
-				}
-			}
 		}
 		#equal {
 			background: ${(props) => (props.light ? "orange" : "teal")};

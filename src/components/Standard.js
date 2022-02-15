@@ -31,7 +31,7 @@ import {
 const keys = {
 	modulo: <FaPercent className='icon' />,
 	root: (
-		<p className="icon">&8732;</p>
+		<p className="icon">&radic;</p>
 
 			
 

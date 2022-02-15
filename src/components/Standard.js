@@ -25,7 +25,6 @@ import {
 	FaMinus,
 	FaPercent,
 	FaPlus,
-	FaSquareRootAlt,
 	FaTimes,
 } from "react-icons/fa";
 

@@ -31,11 +31,11 @@ import {
 const keys = {
 	modulo: <FaPercent className='icon' />,
 	root: (
-		<img
-			src='https://img.icons8.com/ios/50/000000/square-root.png'
-			className='icon'
-			alt='icon'
-		/>
+		<p className="icon">&radic;</p>
+
+			
+
+		
 	),
 	clear: <AiTwotoneDelete className='icon' />,
 	remove: <RiDeleteBack2Fill className='icon' />,

@@ -105,33 +105,33 @@ export default function Navbar() {
 				<ul className='calculator'>
 					<h1>Calculator</h1>
 					<li>
-						<Link exact to='/standard'>
+						<Link to='/standard'>
 							<BsCalculatorFill className='icon' />
 							Standard
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/scientific'>
+						<Link to='/scientific'>
 							<MdOutlineScience className='icon' />
 							Scientific
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/programmer'>
+						<Link to='/programmer'>
 							{" "}
 							<AiOutlineFieldBinary className='icon' />
 							Programmer
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/date'>
+						<Link to='/date'>
 							{" "}
 							<BsFillCalendarDateFill className='icon' />
 							Date Calculation
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/bmi'>
+						<Link to='/bmi'>
 							<GiHealthNormal className='icon' />
 							BMI
 						</Link>
@@ -140,88 +140,88 @@ export default function Navbar() {
 				<ul className='convertor'>
 					<h1>Converter</h1>
 					<li>
-						<Link exact to='/currency'>
+						<Link to='/currency'>
 							{" "}
 							<BsCurrencyDollar className='icon' />
 							Currency
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/volume'>
+						<Link to='/volume'>
 							{" "}
 							<GiGlassShot className='icon' />
 							Volume
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/length'>
+						<Link to='/length'>
 							{" "}
 							<FaPencilRuler className='icon' />
 							Length
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/weight'>
+						<Link to='/weight'>
 							{" "}
 							<FaBalanceScaleRight className='icon' />
 							Weight & Mass
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/temperature'>
+						<Link to='/temperature'>
 							{" "}
 							<FaTemperatureLow className='icon' />
 							Temperature
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/energy'>
+						<Link to='/energy'>
 							{" "}
 							<GiRollingEnergy className='icon' />
 							Energy
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/area'>
+						<Link to='/area'>
 							{" "}
 							<AiOutlineAreaChart className='icon' />
 							Area
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/speed'>
+						<Link to='/speed'>
 							{" "}
 							<BsSpeedometer className='icon' />
 							Speed
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/time'>
+						<Link to='/time'>
 							{" "}
 							<AiOutlineFieldTime className='icon' />
 							Time
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/power'>
+						<Link to='/power'>
 							<BsPower className='icon' />
 							Power
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/data'>
+						<Link to='/data'>
 							<FaDatabase className='icon' />
 							Data
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/pressure'>
+						<Link to='/pressure'>
 							<CgCompressRight className='icon' />
 							Pressure
 						</Link>
 					</li>
 					<li>
-						<Link exact to='/angle'>
+						<Link to='/angle'>
 							<BsTriangle className='icon' />
 							Angle
 						</Link>

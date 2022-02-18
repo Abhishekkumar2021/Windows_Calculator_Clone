@@ -17,28 +17,14 @@ import {
 import { BsDot } from "react-icons/bs";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 
-import { AiTwotoneDelete } from "react-icons/ai";
-
-import {
-	FaDivide,
-	FaEquals,
-	FaMinus,
-	FaPercent,
-	FaPlus,
-	FaTimes,
-} from "react-icons/fa";
+import { FaDivide, FaEquals, FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
 const keys = {
-	modulo: <FaPercent className='icon' />,
-	root: (
-		<p className="icon">&radic;</p>
-
-			
-
-		
-	),
-	clear: <AiTwotoneDelete className='icon' />,
+	modulo: <p className='icon'>&#37;</p>,
+	root: <p className='icon'>&radic;</p>,
 	remove: <RiDeleteBack2Fill className='icon' />,
+	clear: <p className='icon'>C</p>,
+
 	seven: <RiNumber7 className='icon' />,
 	eight: <RiNumber8 className='icon' />,
 	nine: <RiNumber9 className='icon' />,
@@ -96,6 +82,10 @@ const StyledDiv = styled.div`
 		#equal {
 			background: ${(props) => (props.light ? "orange" : "teal")};
 		}
+		#clear {
+			background: ${(props) =>
+				props.light ? "rgb(250, 80, 80,0.5)" : "rgb(200, 100, 20,0.7)"};
+		}
 	}
 	@media only screen and (max-width: 512px) {
 		.buttons {
@@ -111,58 +101,59 @@ const StyledDiv = styled.div`
 		}
 	}
 `;
+
+const calculate = (str) => {
+	let a, b;
+	if (str.includes("-")) {
+		let arr = str.split("-");
+		if (arr.length === 3) {
+			a = -parseFloat(arr[1]);
+			b = -parseFloat(arr[2]);
+			return a + b;
+		} else if (arr.length === 2 && arr[0]) {
+			a = parseFloat(arr[0]);
+			b = -parseFloat(arr[1]);
+			return a + b;
+		}
+	}
+	if (str.includes("+")) {
+		let arr = str.split("+");
+		if (arr.length === 3) {
+			a = parseFloat(arr[1]);
+			b = parseFloat(arr[2]);
+			return a + b;
+		} else if (arr.length === 2 && arr[0]) {
+			a = parseFloat(arr[0]);
+			b = parseFloat(arr[1]);
+			return a + b;
+		}
+	}
+	if (str.includes("*")) {
+		let arr = str.split("*");
+
+		a = parseFloat(arr[0]);
+		b = parseFloat(arr[1]);
+		return a * b;
+	}
+	if (str.includes("/")) {
+		let arr = str.split("/");
+
+		a = parseFloat(arr[0]);
+		b = parseFloat(arr[1]);
+		if (b === 0) return "Not Define";
+		else return a / b;
+	}
+	if (str.includes("%")) {
+		let arr = str.split("%");
+
+		a = parseFloat(arr[0]);
+		b = parseFloat(arr[1]);
+		return a % b;
+	}
+	return str;
+};
+
 export default function Standard() {
-	const calculate = (str) => {
-		let a, b;
-		if (str.includes("-")) {
-			let arr = str.split("-");
-			if (arr.length === 3) {
-				a = -parseFloat(arr[1]);
-				b = -parseFloat(arr[2]);
-				return a + b;
-			} else if (arr.length === 2 && arr[0]) {
-				a = parseFloat(arr[0]);
-				b = -parseFloat(arr[1]);
-				return a + b;
-			}
-		}
-		if (str.includes("+")) {
-			let arr = str.split("+");
-			if (arr.length === 3) {
-				a = parseFloat(arr[1]);
-				b = parseFloat(arr[2]);
-				return a + b;
-			} else if (arr.length === 2 && arr[0]) {
-				a = parseFloat(arr[0]);
-				b = parseFloat(arr[1]);
-				return a + b;
-			}
-		}
-		if (str.includes("*")) {
-			let arr = str.split("*");
-
-			a = parseFloat(arr[0]);
-			b = parseFloat(arr[1]);
-			return a * b;
-		}
-		if (str.includes("/")) {
-			let arr = str.split("/");
-
-			a = parseFloat(arr[0]);
-			b = parseFloat(arr[1]);
-			if (b === 0) return "Not Define";
-			else return a / b;
-		}
-		if (str.includes("%")) {
-			let arr = str.split("%");
-
-			a = parseFloat(arr[0]);
-			b = parseFloat(arr[1]);
-			return a % b;
-		}
-		return result;
-	};
-
 	const [result, setResult] = useState("");
 
 	const [light] = useContext(ThemeContext);

@@ -1,10 +1,12 @@
 import ThemeContext from "./components/ThemeContext";
 import useToggle from "./hooks/useToggle";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import styled from "styled-components";
 import Standard from "./components/Standard";
 import Home from "./components/Home";
+import Programmer from "./components/Programmer";
+import BMI from "./components/BMI";
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -18,15 +20,15 @@ function App() {
 	const [light, toggleLight] = useToggle(true);
 	return (
 		<ThemeContext.Provider value={[light, toggleLight]}>
-			<Router>
-				<StyledApp light={light}>
-					<Navbar />
-					<Routes>
-						<Route exact path='/standard' element={<Standard />}></Route>
-						<Route path='/' element={<Home />}></Route>
-					</Routes>
-				</StyledApp>
-			</Router>
+			<StyledApp light={light}>
+				<Navbar />
+				<Routes>
+					<Route exact path='/standard' element={<Standard />}></Route>
+					<Route exact path='/programmer' element={<Programmer />}></Route>
+					<Route exact path='/bmi' element={<BMI />}></Route>
+					<Route path='/' element={<Home />}></Route>
+				</Routes>
+			</StyledApp>
 		</ThemeContext.Provider>
 	);
 }

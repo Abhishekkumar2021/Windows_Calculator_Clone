@@ -26,7 +26,7 @@ const StyledDiv = styled.div`
 			padding: 15px 20px;
 			border: none;
 			outline: none;
-			box-shadow: 0px 4px 5px rgb(0, 0, 0, 0.1);
+
 			border-radius: 10px;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			margin: 8px 0;
@@ -34,9 +34,7 @@ const StyledDiv = styled.div`
 			color: ${({ light }) => (light ? "black" : "white")};
 			font-size: 18px;
 			transition: 0.3s ease all;
-			&:hover {
-				box-shadow: 0px 0px 0px rgb(0, 0, 0, 0.1);
-			}
+
 			&:focus {
 				box-shadow: 0px 0px 0px 1px
 					${({ light }) => (light ? "orange" : "skyblue")};
@@ -128,7 +126,8 @@ export default function BMI() {
 		const h = parseFloat(height);
 		const w = parseFloat(weight);
 		const bmi = w / (h * h);
-		setBMI(bmi.toFixed(2));
+		if (bmi) setBMI(bmi.toFixed(2));
+		else setBMI(0);
 	};
 	return (
 		<StyledDiv light={light} color={color(BMI)}>

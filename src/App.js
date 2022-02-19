@@ -7,7 +7,7 @@ import Standard from "./components/Standard";
 import Home from "./components/Home";
 import Programmer from "./components/Programmer";
 import BMI from "./components/BMI";
-
+import Date from "./components/Date";
 const StyledApp = styled.div`
 	width: 100%;
 	min-height: 100vh;
@@ -23,10 +23,11 @@ function App() {
 			<StyledApp light={light}>
 				<Navbar />
 				<Routes>
-					<Route exact path='/standard' element={<Standard />}></Route>
-					<Route exact path='/programmer' element={<Programmer />}></Route>
-					<Route exact path='/bmi' element={<BMI />}></Route>
-					<Route path='/' element={<Home />}></Route>
+					<Route exact path='/standard' element={<Standard />} />
+					<Route exact path='/programmer' element={<Programmer />} />
+					<Route exact path='/date' element={<Date />} />
+					<Route exact path='/bmi' element={<BMI />} />
+					<Route path='/' element={<Home />} />
 				</Routes>
 			</StyledApp>
 		</ThemeContext.Provider>

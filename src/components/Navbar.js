@@ -64,7 +64,7 @@ const StyledNavbar = styled.nav`
 		border-radius: 10px;
 		box-shadow: 0px 0px 10px 2px rgb(0, 0, 0, 0.1);
 		transform: ${(props) =>
-			props.display ? "translateX(0)" : "translateX(-110%)"};
+			props.dis ? "translateX(0)" : "translateX(-110%)"};
 		transition: 0.3s ease all;
 		max-height: 90vh;
 		overflow: auto;
@@ -100,7 +100,7 @@ export default function Navbar() {
 	const [light] = useContext(ThemeContext);
 	const [display, setDisplay] = useToggle(false);
 	return (
-		<StyledNavbar light={light} display={display}>
+		<StyledNavbar light={light} dis={display}>
 			<div className='sidebar' onClick={setDisplay}>
 				<ul className='calculator'>
 					<h1>Calculator</h1>

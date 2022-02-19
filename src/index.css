@@ -1,15 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
 }
-html{
-  scroll-behavior: smooth;
+html {
+	scroll-behavior: smooth;
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 0px;
-  
+	width: 0px;
+}
+
+::-webkit-calendar-picker-indicator {
+	padding:10px;
+	background-color:rgb(240,240,256);border-radius:5px;
+	color:rgb(100, 170, 152);
+	cursor: pointer;
 }

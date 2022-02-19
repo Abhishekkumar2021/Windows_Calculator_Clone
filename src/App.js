@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Programmer from "./components/Programmer";
 import BMI from "./components/BMI";
 import Date from "./components/Date";
+import Volume from "./components/Volume";
 const StyledApp = styled.div`
 	width: 100%;
 	min-height: 100vh;
@@ -27,6 +28,7 @@ function App() {
 					<Route exact path='/programmer' element={<Programmer />} />
 					<Route exact path='/date' element={<Date />} />
 					<Route exact path='/bmi' element={<BMI />} />
+					<Route exact path='/volume' element={<Volume />} />
 					<Route path='/' element={<Home />} />
 				</Routes>
 			</StyledApp>

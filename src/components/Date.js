@@ -89,7 +89,6 @@ const StyledDiv = styled.div`
 	}
 	.add_subtract {
 		position: relative;
-		overflow: hidden;
 		max-width: 100%;
 		width: 400px;
 		padding: 30px;

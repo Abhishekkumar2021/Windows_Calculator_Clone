@@ -57,6 +57,7 @@ const StyledNavbar = styled.nav`
 	}
 	.sidebar {
 		position: absolute;
+		z-index: 100;
 		left: 10px;
 		top: 54px;
 		background: ${(props) => (props.light ? "white" : "#37383a")};

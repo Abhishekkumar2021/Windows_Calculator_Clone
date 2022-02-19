@@ -98,10 +98,20 @@ const StyledDiv = styled.div`
 		background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
 		display: flex;
 		flex-direction: column;
+		p {
+			font-size: 20px;
+			span {
+				font-size: 16px;
+				color: ${({ light }) => (light ? "#22bb33" : "#82ec8e")};
+				border-bottom: 1px solid
+					${({ light }) => (light ? "#22bb33" : "#82ec8e")};
+			}
+			margin-bottom: 10px;
+		}
 		input,
 		select {
 			transition: 0.3s ease all;
-			padding: 10px;
+			padding: 10px 15px;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			border: none;
 			outline: none;
@@ -127,7 +137,9 @@ export default function BMI() {
 	const [years, setYears] = useInput(0);
 	const [months, setMonths] = useInput(0);
 	const [days, setDays] = useInput(0);
+	const [final, setFinal] = useState(new Date().toString());
 	const [difference, setDifference] = useState(null);
+	const [val, setVal] = useInput("Add");
 	const getDifference = () => {
 		const [fy, fm, fd] = from.split("-");
 		const [ty, tm, td] = to.split("-");
@@ -149,6 +161,29 @@ export default function BMI() {
 			);
 		else return <p>Difference between dates</p>;
 	};
+	const newDate = () => {
+		const [iy, im, id] = initial.split("-");
+		let finalDate;
+		if (val === "Add") {
+			finalDate = new Date(
+				iy + parseInt(years),
+				im + parseInt(months),
+				id + parseInt(days)
+			);
+			finalDate = finalDate.toString();
+			finalDate =
+				finalDate.slice(0, 15) + finalDate.slice(16, finalDate.length - 1);
+		} else {
+			finalDate = new Date(
+				iy - parseInt(years),
+				im - parseInt(months),
+				id - parseInt(days)
+			);
+		}
+
+		setFinal(finalDate.toString());
+	};
+
 	return (
 		<StyledDiv light={light}>
 			<div className='difference'>
@@ -160,10 +195,14 @@ export default function BMI() {
 				<button onClick={getDifference}>Calculate</button>
 			</div>
 			<div className='add_subtract'>
-				<select>
+				<p>
+					The final Date is <span>{final}</span>
+				</p>
+				<select onChange={setVal}>
 					<option>Add</option>
 					<option>Subtract</option>
 				</select>
+
 				<label htmlFor='initial'>Initial date</label>
 				<input type='date' id='initial' name='date' onChange={setInitial} />
 				<div className='items'>
@@ -174,7 +213,6 @@ export default function BMI() {
 						onChange={setYears}
 						placeholder='Enter years'
 					/>
-
 					<input
 						type='text'
 						id='months'
@@ -191,7 +229,7 @@ export default function BMI() {
 						placeholder='Enter days'
 					/>
 				</div>
-				<button onClick={getDifference}>Calculate</button>
+				<button onClick={newDate}>Calculate</button>
 			</div>
 		</StyledDiv>
 	);

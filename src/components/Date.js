@@ -166,13 +166,10 @@ export default function BMI() {
 		let finalDate;
 		if (val === "Add") {
 			finalDate = new Date(
-				iy + parseInt(years),
-				im + parseInt(months),
-				id + parseInt(days)
+				iy - -parseInt(years),
+				im - -parseInt(months),
+				id - -parseInt(days)
 			);
-			finalDate = finalDate.toString();
-			finalDate =
-				finalDate.slice(0, 15) + finalDate.slice(16, finalDate.length - 1);
 		} else {
 			finalDate = new Date(
 				iy - parseInt(years),

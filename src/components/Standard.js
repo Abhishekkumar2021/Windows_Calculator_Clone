@@ -67,7 +67,7 @@ const StyledDiv = styled.div`
 			outline: none;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			color: ${({ light }) => (light ? "black" : "white")};
-			border-radius: 20px;
+			border-radius: 10px;
 			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
 			font-size: 2rem;
 			transition: 0.3s ease all;
@@ -90,6 +90,9 @@ const StyledDiv = styled.div`
 	@media only screen and (max-width: 512px) {
 		.buttons {
 			grid-gap: 10px;
+			button{
+				border-radius: 20px;
+			}
 		}
 	}
 	@keyframes rotate {
@@ -154,19 +157,19 @@ const calculate = (str) => {
 };
 
 export default function Standard() {
-	const [result, setResult] = useState("");
+	const [result, setResult] = useState("0");
 
 	const [light] = useContext(ThemeContext);
 	const handleClick = (key) => {
 		switch (key) {
 			case "modulo":
-				setResult(calculate(result) + "%");
+				setResult(result + "%");
 				break;
 			case "root":
 				setResult(Math.sqrt(parseFloat(result)));
 				break;
 			case "clear":
-				setResult("");
+				setResult("0");
 				break;
 			case "remove":
 				setResult(result.slice(0, result.length - 1));
@@ -181,7 +184,7 @@ export default function Standard() {
 				setResult(result + "9");
 				break;
 			case "divide":
-				setResult(calculate(result) + "/");
+				setResult(result + "/");
 				break;
 			case "four":
 				setResult(result + "4");
@@ -194,7 +197,7 @@ export default function Standard() {
 				break;
 
 			case "multiply":
-				setResult(calculate(result) + "*");
+				setResult(result + "*");
 				break;
 			case "one":
 				setResult(result + "1");
@@ -206,7 +209,7 @@ export default function Standard() {
 				setResult(result + "3");
 				break;
 			case "add":
-				setResult(calculate(result) + "+");
+				setResult(result + "+");
 				break;
 			case "zero":
 				setResult(result + "0");
@@ -216,7 +219,7 @@ export default function Standard() {
 				break;
 
 			case "substract":
-				setResult(calculate(result) + "-");
+				setResult(result + "-");
 				break;
 			case "equal":
 				setResult(calculate(result));

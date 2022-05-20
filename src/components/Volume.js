@@ -42,9 +42,9 @@ const StyledDiv = styled.div`
 			}
 		}
 		select {
-			color: ${({ light }) => (light ? "#22bb33" : "#82ec8e")};
 			option {
 				font-size: 14px;
+				
 			}
 		}
 	}

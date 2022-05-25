@@ -61,6 +61,11 @@ const StyledDiv = styled.div`
 			}
 		}
 	}
+	@media only screen and (max-width:500px){
+		h1{
+			font-size:24px;
+		}
+	}
 `;
 const list = [
 	"Millilitres",

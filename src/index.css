@@ -12,6 +12,7 @@ html {
 /* width */
 ::-webkit-scrollbar {
 	width: 0px;
+
 }
 
 ::-webkit-calendar-picker-indicator {

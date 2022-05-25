@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import { BsCurrencyDollar } from "react-icons/bs";
+import { FaPencilRuler } from "react-icons/fa";
 import styled from "styled-components";
-
 import ThemeContext from "./ThemeContext";
 
 const StyledDiv = styled.div`
@@ -22,15 +21,35 @@ const StyledDiv = styled.div`
 	flex-wrap: wrap;
 	.first,
 	.second {
+		position: relative;
 		max-width: 100%;
 		width: 400px;
 		padding: 30px;
 		border-radius: 10px;
 		box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
 		background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
+	
 
 		display: flex;
 		flex-direction: column;
+		.icon{
+			position:absolute;
+			top:-40px;
+			left: 10px;
+			width:70px;
+			height:70px;
+			display: flex;
+			justify-content: center;
+			transition: 0.3s ease all;
+			align-items: center;
+			font-size:32px;
+			border-radius: 10px;
+			box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
+			background: ${(props) => (props.light ? "#FFFFCC" : "#413F42")};
+			&:hover{
+				transform:scale(1.2) rotate(20deg) translateY(-20px);
+			}
+		}
 		input,
 		select {
 			transition: 0.3s ease all;
@@ -61,158 +80,35 @@ const StyledDiv = styled.div`
 			}
 		}
 	}
+	@media only screen and (max-width:500px){
+		h1{
+			font-size:24px;
+		}
+	}
 `;
+
 const list = [
-	"Afghanistan - Afghani",
-	"Albania - Lek",
-	"Algeria- Dinar",
-	"Argentina - Peso ",
-	"Aruba - Guilder",
-	"Australia - Dollar",
-	"Azerbaijan - New Manat",
-	"Bahamas, The - Dollar",
-	"Bahrain - Dinar",
-	"Bangladesh - Taka",
-	"Barbados - Dollar",
-	"Belarus - Ruble",
-	"Belize - Dollar",
-	"Bermuda - Dollar",
-	"Bolivia - Boliviano",
-	"Bosnia and Herzegovina - Convertible Marka",
-	"Botswana - Pula",
-	"Brazil - Real",
-	"Brunei - Dollar",
-	"Bulgaria - Lev",
-	"Burundi - Franc",
-	"Cabo Verde - Escudo",
-	"Cambodia - Riel",
-	"Canada - Dollar",
-	"Cayman Islands - Dollar",
-	"Chile - Peso",
-	"China - Yuan",
-	"Colombia - Peso",
-	"Comoros - Franc",
-	"Congo - Franc",
-	"Costa Rica - Colon",
-	"Croatia - Kuna",
-	"Cryptocurrency - Bitcoin",
-	"Cuba - Peso",
-	"Czech Republic - Koruna",
-	"Denmark - Krone",
-	"Djibouti - Franc",
-	"Dominican Republic - Peso",
-	"Egypt - Pound",
-	"Ethiopia - Birr",
-	"Europe - Euro",
-	"Fiji - Dollar",
-	"Gambia, The - Dalasi",
-	"Georgia - Lari",
-	"Ghana - Cedi",
-	"Guatemala - Quetzal",
-	"Guinea - Franc",
-	"Haiti - Gourde",
-	"Honduras - Lempira",
-	"Hong Kong SAR - Dollar",
-	"Hungary - Forint",
-	"Iceland - Krona",
-	"India - Rupee",
-	"Indonesia - Rupiah",
-	"Iran - Rial",
-	"Iraq - Dinar",
-	"Israel - Shekel",
-	"Jamaica - Dollar",
-	"Japan - Yen",
-	"Jordan - Dinar",
-	"Kazakhstan - Tenge",
-	"Kenya - Shilling",
-	"Korea - Won",
-	"Kuwait - Dinar",
-	"Laos - Kip",
-	"Lebanon - Pound",
-	"Lesotho - Loti",
-	"Liberia - Dollar",
-	"Libya - Dinar",
-	"Macao SAR - Pataca",
-	"Madagascar - Malagasy Ariary",
-	"Malawi - Kwacha",
-	"Malaysia - Ringgit",
-	"Maldives - Rufiyaa",
-	"Mauritania - Ouguiya",
-	"Mauritius - Rupee",
-	"Mexico - Peso",
-	"Moldova - Leu",
-	"Morocco - Dirham",
-	"Mozambique - Metical",
-	"Myanmar - Kyat",
-	"Namibia - Dollar",
-	"Nepal - Rupee",
-	"New Zealand - Dollar",
-	"Nicaragua - Cordoba",
-	"Nigeria - Naira",
-	"North Macedonia - Denar",
-	"Norway - Krone",
-	"Oman - Rial",
-	"Pakistan - Rupee",
-	"Panama - Balboa",
-	"Papua New Guinea - Kina",
-	"Paraguay - Guarani",
-	"Peru - Nuevo Sol",
-	"Philippines - Peso",
-	"Poland - Zloty",
-	"Qatar - Riyal",
-	"Romania - New Leu",
-	"Russia - Rouble",
-	"Rwanda - Franc",
-	"Saint Helena, Ascension and Tristan da Cunha - Pound",
-	"Saudi Arabia - Riyal",
-	"Serbia - Dinar",
-	"Seychelles - Rupee",
-	"Sierra Leone - Leone",
-	"Singapore - Dollar",
-	"Somalia - Shilling",
-	"South Africa - Rand",
-	"Sri Lanka - Rupee",
-	"Sudan - Pound",
-	"Swaziland - Lilangeni",
-	"Sweden - Krona",
-	"Switzerland - Franc",
-	"Syria - Pound",
-	"Taiwan - New Dollar",
-	"Tanzania - Shilling",
-	"Thailand - Baht",
-	"Trinidad and Tobago - Dollar",
-	"Tunisia - Dinar",
-	"Turkey - Lira",
-	"Turkmenistan - Manat",
-	"Uganda - Shilling",
-	"Ukraine - Hryvna",
-	"United Arab Emirates - Dirham",
-	"United Kingdom - Pound",
-	"United States - Dollar",
-	"Uruguay - Peso",
-	"Uzbekistan - Som",
-	"Venezuela - Bolivar Soberano",
-	"Vietnam - Dong",
-	"Yemen - Rial",
-	"Zambia - Kwacha",
+	"Nanometers",
+	"Microns",
+	"Millimeters",
+	"Centimeters",
+	"Meters",
+	"Kilometers",
+	"Inches",
+	"Feet",
+	"yards",
+	"Miles",
+	"Nautical Miles"
+];
+const magnitude = [
+	1,1000,1000000,10000000,1000000000,1000000000000,25400000,304800000914400000,1609344000000,1852000000000
 ];
 
-const magnitude = [
-	1,1,1.64,1.34,0.02,0.02,0.02,0.01,0.004,0.99,0.02,0.04,0.02,0.01,0.08,0.02,0.13,
-	0.05,0.02,0.02,23,1.16,45.71,0.01,0.01,9,0.08,44.80,5,22.51,7.59,0.08,
-	0.00,0.27,0.26,0.08,2,0.62,0.21,0.58,0.01,0.02,0.61,0.03,0.09,0.09,97,
-	1.24,0.27,0.09,4.02,1,0.87,165.35,474,16,0.04,1.74,1,0.008,4.70,1.31,
-	14,0.003,149,17,0.18,1.70,0.054,0.09,45,9.13,0.05,0.17,0.41,0.49,0.22,0.21,0.11,
-	0.71,21,0.18,1.40,0.02,0.40,4.67,0.65,0.11,0.004,2.26,0.01,0.04,77,0.04,0.59,0.05,
-	0.04,0.05,0.61,11,0.01,0.04,1,0.15,145,0.02,6,0.18,4.00,5.02,0.18,0.11,
-	0.01,28,0.33,26.20,0.38,0.08,0.034,0.18,0.04,41,0.33,0.04,0.01,0.01,0.45,124.90,0.06,262,
-	3,0.19
-];
 export default function Length() {
 	const [light] = useContext(ThemeContext);
-	const [first, setFirst] = useState("Afghanistan - Afghani");
+	const [first, setFirst] = useState("Meters");
 	const [a, setA] = useState("");
-	const [second, setSecond] = useState("Afghanistan - Afghani");
+	const [second, setSecond] = useState("Meters");
 	const [b, setB] = useState("");
 	const handleA = (e) => {
 		const indexA = list.indexOf(first);
@@ -269,7 +165,7 @@ export default function Length() {
 	};
 	return (
 		<StyledDiv light={light}>
-			<h1><BsCurrencyDollar className='icon' /> The currency converter </h1>
+			<h1><FaPencilRuler className='icon' /> The Length converter </h1>
 			<div className='first'>
 				<select onChange={handleFirst} value={first}>
 					{list.map((item, index) => (

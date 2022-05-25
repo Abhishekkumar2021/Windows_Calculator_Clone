@@ -28,6 +28,7 @@ const StyledDiv = styled.div`
 		border-radius: 10px;
 		box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
 		background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
+	
 
 		display: flex;
 		flex-direction: column;
@@ -39,12 +40,15 @@ const StyledDiv = styled.div`
 			height:70px;
 			display: flex;
 			justify-content: center;
+			transition: 0.3s ease all;
 			align-items: center;
 			font-size:32px;
 			border-radius: 10px;
 			box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
-
-			background: ${(props) => (props.light ? "#FFFFCC" : "rgba(20, 40, 120)")};
+			background: ${(props) => (props.light ? "#FFFFCC" : "#413F42")};
+			&:hover{
+				transform:scale(1.2) rotate(20deg) translateY(-20px);
+			}
 		}
 		input,
 		select {
@@ -76,7 +80,7 @@ const StyledDiv = styled.div`
 			}
 		}
 	}
-	@media only screen and (max-width:768px){
+	@media only screen and (max-width:500px){
 		h1{
 			font-size:24px;
 		}
@@ -361,8 +365,7 @@ const magnitude = [
 	3,0.19
 ];
 
-export default function Currency() {
-	const [fs,setFS] = useState("") 
+export default function Currency() { 
 	const [light] = useContext(ThemeContext);
 	const [first, setFirst] = useState("Afghanistan - Afghani");
 	const [a, setA] = useState("");

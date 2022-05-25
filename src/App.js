@@ -10,6 +10,18 @@ import BMI from "./components/BMI";
 import Date from "./components/Date";
 import Volume from "./components/Volume";
 import Currency from "./components/Currency";
+import Length from "./components/Length";
+import Mass from "./components/Mass";
+import Temperature from "./components/Temperature";
+import Energy from "./components/Energy";
+import Area from "./components/Area";
+import Speed from "./components/Speed";
+import Time from "./components/Time";
+import Power from "./components/Power";
+import Data from "./components/Data";
+import Pressure from "./components/Pressure";
+import Angle from "./components/Angle";
+
 const StyledApp = styled.div`
 	width: 100%;
 	min-height: 100vh;
@@ -31,6 +43,17 @@ function App() {
 					<Route exact path='/bmi' element={<BMI />} />
 					<Route exact path='/currency' element={<Currency />} />
 					<Route exact path='/volume' element={<Volume />} />
+					<Route exact path='/length' element={<Length />} />
+					<Route exact path='/temperature' element={<Temperature/>} />
+					<Route exact path='/weight' element={<Mass />} />
+					<Route exact path='/energy' element={<Energy/>} />
+					<Route exact path='/area' element={<Area/>} />
+					<Route exact path='/speed' element={<Speed/>} />
+					<Route exact path='/time' element={<Time/>} />
+					<Route exact path='/power' element={<Power/>} />
+					<Route exact path='/data' element={<Data/>} />
+					<Route exact path='/pressure' element={<Pressure/>} />
+					<Route exact path='/angle' element={<Angle/>} />
 					<Route path='/' element={<Home />} />
 				</Routes>
 			</StyledApp>

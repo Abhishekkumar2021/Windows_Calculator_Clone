@@ -157,7 +157,7 @@ const calculate = (str) => {
 };
 
 export default function Standard() {
-	const [result, setResult] = useState("0");
+	const [result, setResult] = useState("");
 
 	const [light] = useContext(ThemeContext);
 	const handleClick = (key) => {
@@ -166,10 +166,13 @@ export default function Standard() {
 				setResult(result + "%");
 				break;
 			case "root":
+				if(isNaN(Math.sqrt(parseFloat(result))))
+				setResult("")
+				else
 				setResult(Math.sqrt(parseFloat(result)));
 				break;
 			case "clear":
-				setResult("0");
+				setResult("");
 				break;
 			case "remove":
 				setResult(result.slice(0, result.length - 1));
@@ -222,8 +225,12 @@ export default function Standard() {
 				setResult(result + "-");
 				break;
 			case "equal":
+				if(isNaN(calculate(result)))
+				setResult("")
+				else
 				setResult(calculate(result));
-				break;
+			
+			break;
 			default:
 				break;
 		}

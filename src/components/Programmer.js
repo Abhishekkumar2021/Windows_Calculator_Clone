@@ -16,6 +16,7 @@ flex-wrap: wrap;
 flex-grow:1;
 color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 .card{
+	margin-top:40px;
 	position: relative;
 	background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
 	padding:20px;

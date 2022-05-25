@@ -21,6 +21,7 @@ import Power from "./components/Power";
 import Data from "./components/Data";
 import Pressure from "./components/Pressure";
 import Angle from "./components/Angle";
+import Scientific from "./components/Scientific";
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -28,7 +29,7 @@ const StyledApp = styled.div`
 	display: flex;
 	flex-direction: column;
 	background: ${({ light }) => (light ? "#D4ECDD" : "#242629")};
-	color: ${({ light }) => (light ? "color:rgba(0, 0, 0, 0.781);" : "white")};
+	color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 `;
 function App() {
 	const [light, toggleLight] = useToggle(true);
@@ -38,6 +39,7 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route exact path='/standard' element={<Standard />} />
+					<Route exact path='/scientific' element={<Scientific />} />
 					<Route exact path='/programmer/*' element={<Programmer />} />
 					<Route exact path='/date' element={<Date />} />
 					<Route exact path='/bmi' element={<BMI />} />

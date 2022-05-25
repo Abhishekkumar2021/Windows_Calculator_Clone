@@ -64,6 +64,11 @@ const StyledDiv = styled.div`
 			.note{
 				margin: 0;
 				margin-top:-150px;
+				font-size:28px;
+		span{
+			font-size:36px;
+			font-family: 'Roboto Slab',Roboto serif;		
+		}
 			}
 		}
 	

@@ -237,7 +237,7 @@ export default function Standard() {
 	};
 	return (
 		<StyledDiv light={light}>
-			<div className='screen'>{result}</div>
+			<div className='screen' title="Provide me some math to solve :)">{result}</div>
 			<div className='buttons'>
 				{Object.keys(keys).map((key) => (
 					<button key={key} id={key} onClick={() => handleClick(key)}>

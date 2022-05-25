@@ -92,10 +92,14 @@ const list = [
     "Farenheit",
    "Kelvin",
 ];
-const magnitude = [
-	1,2,3
-];
+const CelsiusToFarenheit = (cel) => `${parseFloat(cel)*9/5 + 32}`;
+const CelsiusToKelvin = (cel)=> `${parseFloat(cel) + 273}`;
+const FarenheitToCelsius = (f)=> `${parseFloat(f-32)*5/9}`;
+const FarenheitToKelvin = (f)=> CelsiusToKelvin(FarenheitToCelsius(f));
+const KelvinToCelsius = (kel)=> `${parseFloat(kel)-273}`;
+const KelvinToFarenheit = (kel)=> CelsiusToFarenheit(KelvinToCelsius(kel));
 
+const matrix = [["",CelsiusToFarenheit,CelsiusToKelvin],[FarenheitToCelsius,"",FarenheitToKelvin],[KelvinToCelsius,KelvinToFarenheit,""]]
 export default function Temperature() {
 	const [light] = useContext(ThemeContext);
 	const [first, setFirst] = useState("Kelvin");
@@ -104,54 +108,66 @@ export default function Temperature() {
 	const [b, setB] = useState("");
 	const handleA = (e) => {
 		const indexA = list.indexOf(first);
-		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
-		let y = magnitude[indexB];
-		if(isNaN((x / y) * parseFloat(e.target.value)))
-		setB("");
-		else
-		setB(`${(x / y) * parseFloat(e.target.value)}`)
+		if(matrix[indexA][indexB]!==""){
+			if(!isNaN(matrix[indexA][indexB](e.target.value)))
+			setB(matrix[indexA][indexB](e.target.value));
+			else
+			setB("");
+
+		}else{
+			setB(e.target.value);
+		}
 		if(isNaN(e.target.value))
 		setA("")
 		else
 		setA(e.target.value);
+		
 	};
 	const handleB = (e) => {
 		const indexA = list.indexOf(first);
-		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
-		let y = magnitude[indexB];
-		if(isNaN((y / x) * parseFloat(e.target.value)))
-		setA("");
-		else
-		setA(`${(y / x) * parseFloat(e.target.value)}`)
+		if(matrix[indexA][indexB]!==""){
+			if(!isNaN(matrix[indexA][indexB](e.target.value)))
+			setA(matrix[indexA][indexB](e.target.value));
+			else
+			setA("");
+
+		}else{
+			setA(e.target.value);
+		}
 		if(isNaN(e.target.value))
-		setA("")
+		setB("")
 		else
-		setA(e.target.value);
+		setB(e.target.value);
 	};
 	const handleFirst = (e) => {
 		const indexA = list.indexOf(e.target.value);
-		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
-		let y = magnitude[indexB];
-		if(isNaN((x / y) *  parseFloat(b)))
-		setA("")
-		else
-		setA(`${(x / y) *  parseFloat(b)}`);
+		if(matrix[indexA][indexB]!==""){
+			if(!isNaN(matrix[indexA][indexB](b)))
+			setA(matrix[indexA][indexB](b));
+			else
+			setA("");
+
+		}else{
+			setA(b);
+		}
 		setFirst(e.target.value);
 		
 	};
 	const handleSecond = (e) => {
 		const indexA = list.indexOf(first);
-		let x = magnitude[indexA];
 		const indexB = list.indexOf(e.target.value);
-		let y = magnitude[indexB];
-		
-		if(isNaN((x / y) * parseFloat(a)))
-		setB("")
-		else
-		setB(`${(x / y) * parseFloat(a)}`);
+		if(matrix[indexA][indexB]!==""){
+			if(!isNaN(matrix[indexA][indexB](a)))
+			setB(matrix[indexA][indexB](a));
+			else
+			setB("");
+
+		}else{
+			setB(a);
+		}
 		setSecond(e.target.value);
 		
 	};

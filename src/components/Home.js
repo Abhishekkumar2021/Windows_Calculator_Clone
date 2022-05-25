@@ -63,7 +63,7 @@ const StyledDiv = styled.div`
 		@media only screen and (max-width:768px){
 			.note{
 				margin: 0;
-				margin-top:-120px;
+				margin-top:-150px;
 			}
 		}
 	

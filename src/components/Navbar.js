@@ -79,7 +79,7 @@ const StyledNavbar = styled.nav`
 				}
 				a {
 					text-decoration: none;
-					color: ${({ light }) => (light ? "black" : "white")};
+					color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 					.icon {
 						margin-right: 7px;
 					}

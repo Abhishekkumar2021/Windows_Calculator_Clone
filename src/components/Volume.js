@@ -1,9 +1,17 @@
 import React, { useContext, useState } from "react";
+import { GiGlassShot } from "react-icons/gi";
 import styled from "styled-components";
 
 import ThemeContext from "./ThemeContext";
 
 const StyledDiv = styled.div`
+    h1{
+		position:absolute;
+		text-align: center;
+		top:80px;
+		color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
+					
+    }
 	padding: 20px;
 	width: 100%;
 	flex-grow: 1;
@@ -32,16 +40,21 @@ const StyledDiv = styled.div`
 			outline: none;
 			margin: 15px 0;
 			font-size: 20px;
-
-			color: ${({ light }) => (light ? "black" : "white")};
-			border-radius: 5px;
-
 			&:focus {
 				box-shadow: 0px 0px 0px 1px
-					${({ light }) => (light ? "orange" : "skyblue")};
+					${({ light }) => (light ? "rgb(109, 153, 234)" : "skyblue")};
 			}
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
+			border-radius: 5px;
 		}
 		select {
+			font-size: 28px;
+			font-family: 'Roboto Slab',Roboto serif;		
+			text-align: center;	
+			&:hover {
+				box-shadow: 0px 0px 0px 1px
+					${({ light }) => (light ? "rgb(109, 153, 234)" :  "skyblue")};
+			}
 			option {
 				font-size: 14px;
 				
@@ -78,60 +91,82 @@ const magnitude = [
 ];
 export default function Volume() {
 	const [light] = useContext(ThemeContext);
-	const [first, setFirst] = useState("Millilitres");
-	const [a, setA] = useState(0);
-	const [second, setSecond] = useState("Millilitres");
-	const [b, setB] = useState(0);
+	const [first, setFirst] = useState("Cubic Meters");
+	const [a, setA] = useState("");
+	const [second, setSecond] = useState("Cubic Meters");
+	const [b, setB] = useState("");
 	const handleA = (e) => {
 		const indexA = list.indexOf(first);
 		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
 		let y = magnitude[indexB];
-		setB((x / y) * e.target.value || 0);
-		setA(parseFloat(e.target.value) || 0);
+		if(isNaN((x / y) * parseFloat(e.target.value)))
+		setB("");
+		else
+		setB(`${(x / y) * parseFloat(e.target.value)}`)
+		if(isNaN(e.target.value))
+		setA("")
+		else
+		setA(e.target.value);
 	};
 	const handleB = (e) => {
 		const indexA = list.indexOf(first);
 		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
 		let y = magnitude[indexB];
-		setA((y / x) * e.target.value || 0);
-		setB(parseFloat(e.target.value) || 0);
+		if(isNaN((y / x) * parseFloat(e.target.value)))
+		setA("");
+		else
+		setA(`${(y / x) * parseFloat(e.target.value)}`)
+		if(isNaN(e.target.value))
+		setA("")
+		else
+		setA(e.target.value);
 	};
 	const handleFirst = (e) => {
 		const indexA = list.indexOf(e.target.value);
 		let x = magnitude[indexA];
 		const indexB = list.indexOf(second);
 		let y = magnitude[indexB];
-		setB((x / y) * a || 0);
+		if(isNaN((x / y) *  parseFloat(b)))
+		setA("")
+		else
+		setA(`${(x / y) *  parseFloat(b)}`);
 		setFirst(e.target.value);
+		
 	};
 	const handleSecond = (e) => {
 		const indexA = list.indexOf(first);
 		let x = magnitude[indexA];
 		const indexB = list.indexOf(e.target.value);
 		let y = magnitude[indexB];
-		setA((x / y) * b || 0);
+		
+		if(isNaN((x / y) * parseFloat(a)))
+		setB("")
+		else
+		setB(`${(x / y) * parseFloat(a)}`);
 		setSecond(e.target.value);
+		
 	};
 	return (
 		<StyledDiv light={light}>
+			<h1><GiGlassShot className='icon' /> The volume converter </h1>
 			<div className='first'>
-				<select onChange={handleFirst}>
+				<select onChange={handleFirst} value={first}>
 					{list.map((item, index) => (
 						<option key={index}>{item}</option>
 					))}
 				</select>
 
-				<input id='a' type='text' onChange={handleA} value={a} />
+				<input id='a' type='text' onChange={handleA} value={ a } placeholder="Enter a value..."/>
 			</div>
 			<div className='second'>
-				<select onChange={handleSecond}>
+				<select onChange={handleSecond} value={second}>
 					{list.map((item, index) => (
 						<option key={index}>{item}</option>
 					))}
 				</select>
-				<input id='b' type='text' onChange={handleB} value={b} />
+				<input id='b' type='text' onChange={handleB} value={b} placeholder="Enter a value..."/>
 			</div>
 		</StyledDiv>
 	);

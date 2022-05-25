@@ -31,7 +31,7 @@ const StyledDiv = styled.div`
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			margin: 8px 0;
 			margin-bottom: 30px;
-			color: ${({ light }) => (light ? "black" : "white")};
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 			font-size: 18px;
 			transition: 0.3s ease all;
 
@@ -49,7 +49,7 @@ const StyledDiv = styled.div`
 			padding: 10px 20px;
 			border: none;
 			outline: none;
-			color: ${({ light }) => (light ? "black" : "white")};
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			border-radius: 5px;
 			box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);

@@ -66,7 +66,7 @@ const StyledDiv = styled.div`
 			border: none;
 			outline: none;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
-			color: ${({ light }) => (light ? "black" : "white")};
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 			border-radius: 10px;
 			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
 			font-size: 2rem;

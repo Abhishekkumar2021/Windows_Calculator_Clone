@@ -9,13 +9,14 @@ import Programmer from "./components/Programmer";
 import BMI from "./components/BMI";
 import Date from "./components/Date";
 import Volume from "./components/Volume";
+import Currency from "./components/Currency";
 const StyledApp = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	background: ${({ light }) => (light ? "#D4ECDD" : "#242629")};
-	color: ${({ light }) => (light ? "black" : "white")};
+	color: ${({ light }) => (light ? "color:rgba(0, 0, 0, 0.781);" : "white")};
 `;
 function App() {
 	const [light, toggleLight] = useToggle(true);
@@ -25,9 +26,10 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route exact path='/standard' element={<Standard />} />
-					<Route exact path='/programmer' element={<Programmer />} />
+					<Route exact path='/programmer/*' element={<Programmer />} />
 					<Route exact path='/date' element={<Date />} />
 					<Route exact path='/bmi' element={<BMI />} />
+					<Route exact path='/currency' element={<Currency />} />
 					<Route exact path='/volume' element={<Volume />} />
 					<Route path='/' element={<Home />} />
 				</Routes>

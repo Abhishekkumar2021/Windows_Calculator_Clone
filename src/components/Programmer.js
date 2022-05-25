@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import ThemeContext from "./ThemeContext";
-import { Route } from "react-router-dom";
-
+import { Route, Routes, Link } from "react-router-dom";
 import {
 	RiNumber0,
 	RiNumber1,
@@ -20,6 +19,9 @@ import { RiDeleteBack2Fill } from "react-icons/ri";
 
 import { FaDivide, FaEquals, FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 import Binary from "./Binary";
+import Decimal from "./Decimal";
+import Hex from "./Hex";
+import Oct from "./Oct";
 
 const keys = {
 	keyA: <p className='icon'>A</p>,
@@ -74,11 +76,21 @@ const StyledDiv = styled.div`
 			border-radius: 10px;
 			font-size: 18px;
 			margin:  5px;
+			display:flex;
+			flex-direction: column;
 			padding:5px;
-			p {
+			a {
 				padding: 5px 15px;
 				border-radius: 5px;
+				text-decoration: none;
+				transition:0.3s ease all;
+				color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
+				&:hover{
+					box-shadow: 0px 0px 0px 1px
+					${({ light }) => (light ? "rgb(109, 153, 234)" :  "skyblue")};
+				}
 			}
+
 			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
 		}
 		.component {
@@ -87,8 +99,6 @@ const StyledDiv = styled.div`
 			margin: 5px;
 			padding: 15px;
 			display: flex;
-			align-items: center;
-		justify-content: flex-end;
 		box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
 		font-size: 32px;
 			border-radius: 10px;
@@ -103,7 +113,7 @@ const StyledDiv = styled.div`
 			border: none;
 			outline: none;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
-			color: ${({ light }) => (light ? "black" : "white")};
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
 			border-radius: 10px;
 			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
 			font-size: 2rem;
@@ -117,11 +127,11 @@ const StyledDiv = styled.div`
 			}
 		}
 		#equal {
-			background: ${(props) => (props.light ? "orange" : "teal")};
+			background: ${(props) => (props.light ? "rgb(109, 153, 234)" : "teal")};
 		}
 		#clear {
 			background: ${(props) =>
-				props.light ? "rgb(255, 50, 50,0.4)" : "rgb(200, 100, 20,0.7)"};
+		props.light ? "rgb(255, 50, 50,0.4)" : "rgb(200, 100, 20,0.7)"};
 		}
 	}
 	@media only screen and (max-width: 512px) {
@@ -281,13 +291,16 @@ export default function Standard() {
 		<StyledDiv light={light}>
 			<div className='screen'>
 				<div className='nav'>
-					<p>Decimal</p>
-					<p>Binary</p>
-					<p>Hexadecimal</p>
-					<p>Octal</p>
+					<Link to='binary'>Binary</Link>
+					<Link to='decimal'>Decimal</Link>
+					<Link to='hex'>Hexadecimal</Link>
+					<Link to='octal'>Octal</Link>
 				</div>
 				<div className='component'>
-					<Route exact path='/programmer/binary' element={<Binary/>} />	
+					<Routes><Route exact path='binary' element={<Binary />} />	</Routes>
+					<Routes><Route exact path='decimal' element={ <Decimal/> } />	</Routes>
+					<Routes><Route exact path='hex' element={<Hex />} />	</Routes>
+					<Routes><Route exact path='oct' element={<Oct />} />	</Routes>
 				</div>
 			</div>
 			<div className='buttons'>

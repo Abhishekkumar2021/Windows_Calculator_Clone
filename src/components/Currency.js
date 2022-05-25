@@ -76,6 +76,11 @@ const StyledDiv = styled.div`
 			}
 		}
 	}
+	@media only screen and (max-width:768px){
+		h1{
+			font-size:24px;
+		}
+	}
 `;
 let symbol= [
     "؋",

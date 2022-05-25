@@ -21,6 +21,7 @@ import {
 	AiOutlineAreaChart,
 	AiOutlineFieldTime,
 	AiOutlineMenu,
+	AiFillHome,
 } from "react-icons/ai";
 import {
 	FaPencilRuler,
@@ -104,7 +105,13 @@ export default function Navbar() {
 		<StyledNavbar light={light} dis={display}>
 			<div className='sidebar' onClick={setDisplay}>
 				<ul className='calculator'>
-					<h1>Calculator</h1>
+				<li>
+						<Link to=''>
+							<AiFillHome className='icon' />
+							Home
+						</Link>
+				</li>
+					<h1>Calculators</h1>
 					<li>
 						<Link to='/standard'>
 							<BsCalculatorFill className='icon' />
@@ -139,7 +146,7 @@ export default function Navbar() {
 					</li>
 				</ul>
 				<ul className='convertor'>
-					<h1>Converter</h1>
+					<h1>Converters</h1>
 					<li>
 						<Link to='/currency'>
 							{" "}

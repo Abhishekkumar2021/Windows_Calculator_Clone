@@ -1,314 +1,343 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import ThemeContext from "./ThemeContext";
-import { Route, Routes, Link } from "react-router-dom";
-import {
-	RiNumber0,
-	RiNumber1,
-	RiNumber2,
-	RiNumber3,
-	RiNumber4,
-	RiNumber5,
-	RiNumber6,
-	RiNumber7,
-	RiNumber8,
-	RiNumber9,
-} from "react-icons/ri";
-import { BsDot } from "react-icons/bs";
-import { RiDeleteBack2Fill } from "react-icons/ri";
+import bin from "../assets/bin.jpg"
+import dec from "../assets/dec.jpg"
+import octa from "../assets/oct.jpg"
+import hexa from "../assets/hex.jpg"
 
-import { FaDivide, FaEquals, FaMinus, FaPlus, FaTimes } from "react-icons/fa";
-import Binary from "./Binary";
-import Decimal from "./Decimal";
-import Hex from "./Hex";
-import Oct from "./Oct";
-
-const keys = {
-	keyA: <p className='icon'>A</p>,
-	ls: <p className='icon'>&lt;&lt;</p>,
-	rs: <p className='icon'>&gt;&gt;</p>,
-	clear: <p className='icon'>AC</p>,
-	remove: <RiDeleteBack2Fill className='icon' />,
-	keyB: <p className='icon'>B</p>,
-	lbr: <p className='icon'>&#x2768;</p>,
-	rbr: <p className='icon'>&#x2769;</p>,
-	modulo: <p className='icon'>&#37;</p>,
-	divide: <FaDivide className='icon' />,
-	keyC: <p className='icon'>C</p>,
-	seven: <RiNumber7 className='icon' />,
-	eight: <RiNumber8 className='icon' />,
-	nine: <RiNumber9 className='icon' />,
-	multiply: <FaTimes className='icon' />,
-	keyD: <p className='icon'>D</p>,
-	four: <RiNumber4 className='icon' />,
-
-	five: <RiNumber5 className='icon' />,
-	six: <RiNumber6 className='icon' />,
-	substract: <FaMinus className='icon' />,
-
-	keyE: <p className='icon'>E</p>,
-	one: <RiNumber1 className='icon' />,
-	two: <RiNumber2 className='icon' />,
-	three: <RiNumber3 className='icon' />,
-	add: <FaPlus className='icon' />,
-	keyF: <p className='icon'>F</p>,
-	dzero: <p className='icon'>00</p>,
-	zero: <RiNumber0 className='icon' />,
-	period: <BsDot className='icon' />,
-
-	equal: <FaEquals className='icon' />,
-};
 const StyledDiv = styled.div`
-	padding: 20px;
-	width: 100%;
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	.screen {
-	
-		margin: 10px 0;
-		display: flex;
-		box-shadow: 0px 0px 0px 2px
-		${(props) => (props.light ? "white" : "#37383a")};
-					border-radius: 10px;
-		.nav {
-			background: ${(props) => (props.light ? "white" : "#37383a")};
-			border-radius: 10px;
-			font-size: 18px;
-			margin:  5px;
-			display:flex;
-			flex-direction: column;
-			padding:5px;
-			a {
-				padding: 5px 15px;
-				border-radius: 5px;
-				text-decoration: none;
-				transition:0.3s ease all;
-				color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
-				&:hover{
-					box-shadow: 0px 0px 0px 1px
-					${({ light }) => (light ? "rgb(109, 153, 234)" :  "skyblue")};
-				}
+display: flex;
+justify-content: center;
+align-items: center;
+align-content: center;
+gap:20px;
+flex-wrap: wrap;
+flex-grow:1;
+color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
+.card{
+	position: relative;
+	background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
+	padding:20px;
+	box-shadow: 0px 0px 10px 2px rgb(0, 0, 0, 0.1);
+	border-radius: 10px;
+	h2{
+		position: absolute;
+		top:-40px;
+		left:0px;
+		border-radius: 10px;
+		box-shadow: 0px -5px 5px rgb(0, 0, 0, 0.1);
+		background: ${(props) => (props.light ? "rgb(240,240,256)" : "#2b2e33")};
+		padding:10px 15px;
+	}
+	.img{
+		width:300px;
+		height:200px;
+		margin:5px 0;
+		overflow: hidden;
+		border-radius:10px;
+		img{
+			width:100%;
+			height:100%;
+			border-radius:10px;
+			transition:0.3s ease all;
+			&:hover{
+				transform: scale(1.1);
 			}
-
-			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
-		}
-		.component {
-			background: ${(props) => (props.light ? "white" : "#37383a")};
-			flex-grow: 1;
-			margin: 5px;
-			padding: 15px;
-			display: flex;
-		box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
-		font-size: 32px;
-			border-radius: 10px;
 		}
 	}
-	.buttons {
-		flex-grow: 1;
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-gap: 12px;
-		button {
+	input {
+			transition: 0.3s ease all;
+			padding: 10px;
+			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
+			background: ${(props) => (props.light ? "white" : "#37383a")};
 			border: none;
 			outline: none;
-			background: ${(props) => (props.light ? "white" : "#37383a")};
-			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
-			border-radius: 10px;
-			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
-			font-size: 2rem;
-			transition: 0.3s ease all;
-			overflow: hidden;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			&:active {
-				transform: scale(0.9);
+			margin: 7px 0;
+			width:100%;
+			border-radius: 5px;
+			&:focus {
+				box-shadow: 0px 0px 0px 1px
+					${({ light }) => (light ? "orange" : "skyblue")};
 			}
 		}
-		#equal {
-			background: ${(props) => (props.light ? "rgb(109, 153, 234)" : "teal")};
-		}
-		#clear {
-			background: ${(props) =>
-		props.light ? "rgb(255, 50, 50,0.4)" : "rgb(200, 100, 20,0.7)"};
-		}
-	}
-	@media only screen and (max-width: 512px) {
-		.buttons {
-			grid-gap: 10px;
-			button {
-				border-radius: 18px;
-			}
-		}
-	}
-	@keyframes rotate {
-		from {
-			transform: rotate(0deg) scale(1.3);
-		}
-		to {
-			transform: rotate(359deg) scale(1);
-		}
-	}
+}
 `;
 
-const calculate = (str) => {
-	let a, b;
-	if (str.includes("-")) {
-		let arr = str.split("-");
-		if (arr.length === 3) {
-			a = -parseFloat(arr[1]);
-			b = -parseFloat(arr[2]);
-			return a + b;
-		} else if (arr.length === 2 && arr[0]) {
-			a = parseFloat(arr[0]);
-			b = -parseFloat(arr[1]);
-			return a + b;
-		}
-	}
-	if (str.includes("+")) {
-		let arr = str.split("+");
-		if (arr.length === 3) {
-			a = parseFloat(arr[1]);
-			b = parseFloat(arr[2]);
-			return a + b;
-		} else if (arr.length === 2 && arr[0]) {
-			a = parseFloat(arr[0]);
-			b = parseFloat(arr[1]);
-			return a + b;
-		}
-	}
-	if (str.includes("*")) {
-		let arr = str.split("*");
-
-		a = parseFloat(arr[0]);
-		b = parseFloat(arr[1]);
-		return a * b;
-	}
-	if (str.includes("/")) {
-		let arr = str.split("/");
-
-		a = parseFloat(arr[0]);
-		b = parseFloat(arr[1]);
-		if (b === 0) return "Not Define";
-		else return a / b;
-	}
-	if (str.includes("%")) {
-		let arr = str.split("%");
-
-		a = parseFloat(arr[0]);
-		b = parseFloat(arr[1]);
-		return a % b;
-	}
-	return str;
-};
-
 export default function Standard() {
-	const [result, setResult] = useState("0");
-	// const [decimal, setDecimal] = useState("0");
-	// const [hex, setHex] = useState("0");
-	// const [oct, setOct] = useState("0");
-	// const [binary, setBinary] = useState("0");
 	const [light] = useContext(ThemeContext);
-	// const [comp, setComp] = useState(4);
-	const handleClick = (key) => {
-		switch (key) {
-			case "modulo":
-				setResult(result + "%");
-				break;
-			case "root":
-				setResult(Math.sqrt(parseFloat(result)));
-				break;
-			case "clear":
-				setResult("0");
-				break;
-			case "remove":
-				setResult(result.slice(0, result.length - 1));
-				break;
-			case "seven":
-				setResult(result + "7");
-				break;
-			case "eight":
-				setResult(result + "8");
-				break;
-			case "nine":
-				setResult(result + "9");
-				break;
-			case "divide":
-				setResult(result + "/");
-				break;
-			case "four":
-				setResult(result + "4");
-				break;
-			case "five":
-				setResult(result + "5");
-				break;
-			case "six":
-				setResult(result + "6");
-				break;
-
-			case "multiply":
-				setResult(result + "*");
-				break;
-			case "one":
-				setResult(result + "1");
-				break;
-			case "two":
-				setResult(result + "2");
-				break;
-			case "three":
-				setResult(result + "3");
-				break;
-			case "add":
-				setResult(result + "+");
-				break;
-			case "zero":
-				setResult(result + "0");
-				break;
-			case "period":
-				setResult(result + ".");
-				break;
-			case "substract":
-				setResult(result + "-");
-				break;
-			case "equal":
-				setResult(calculate(result));
-				break;
-			default:
-				break;
+	const [binary, setBinary] = useState("")
+	const [oct, setOct] = useState("")
+	const [decimal, setDecimal] = useState("")
+	const [hex, setHex] = useState("")
+	const binaryToDecimal = (b)=>{
+		let num = 0;
+		let n = b.length;
+		let pow = 1;
+		for(let i =n-1; i>=0; i--){
+			if(b[i]==='1')
+			num+=pow;
+			else if(b[i]!=='0')
+			return "";
+			pow*=2;
 		}
-	};
-	// const component = ()=>{
-	// 	switch(comp){
-	// 		case 0: return binary;
-	// 		case 1: return hex;
-	// 		case 2: return oct;
-	// 		default: return decimal;
+		if(n===0)
+		return "";
+		else
+		return `${num}`;
+	}
 
-	// 	}
-	// }
+	const binaryToOctal = (b)=>{
+		let ans = "";
+		let n = b.length;
+		if(n%3===1)
+		b = "00"+ b;
+		else if(n%3===2)
+		b= "0"+ b;
+		let cnt = 0;
+		let temp = "";
+		for(let i=0; i<b.length; i++){
+			temp+=b[i];
+			cnt++;
+			if(cnt===3){
+				ans += binaryToDecimal(temp);
+				temp= "";
+				cnt = 0;
+			}
+		}
+		return ans;
+	}
+	const binaryToHex = (b)=>{
+		let ans = "";
+		let n = b.length;
+		if(n%4===1)
+		b = "000"+ b;
+		else if(n%4===2)
+		b= "00"+ b;
+		else if(n%4===3)
+		b= "0"+ b;
+		let cnt = 0;
+		let temp = "";
+		for(let i=0; i<b.length; i++){
+			temp+=b[i];
+			cnt++;
+			if(cnt===4){
+				const y = binaryToDecimal(temp);
+				switch(parseInt(y)){
+					case 10: ans+="A";
+					         break;
+					case 11: ans+="B";
+					         break;
+					case 12: ans+="C";
+					         break;
+					case 13: ans+="D";
+					         break;
+					case 14: ans+="E";
+					         break;
+					case 15: ans+="F";
+					         break;
+					default: ans += y;
+				}
+				temp= "";
+				cnt = 0;
+			}
+		}
+		return ans;
+	}
+	const decimalToBinary = (d)=>{
+		let ans = "";
+		if(d.length===0)
+		return ans;
+		let num = parseInt(d);
+		if(num===0)
+		return "0"
+		while(num>0){
+			if(num%2===0)
+			ans = "0"+ ans;
+			else
+			ans = "1"+ ans;
+			num = parseInt(num/2);
+		}
+		return ans;
+	}
+
+	const octToBinary = (o)=>{
+		let ans = "";
+		for(let i=0; i<o.length; i++){
+			let s = decimalToBinary(o[i]);
+			if(s.length%3===0)
+			ans+=s;
+			else if(s.length%3===1)
+			ans+="00"+s;
+			else if(s.length%3===2)
+			ans+="0"+s;
+		}
+		return ans;
+	}
+
+	const hexToBinary = (o)=>{
+		let ans = "";
+		for(let i=0; i<o.length; i++){
+			let s;
+	        switch(o[i]){
+				case 'A' : s = decimalToBinary("10");
+						   break;
+				case 'B' : s = decimalToBinary("11");
+						   break;
+				case 'C' : s = decimalToBinary("12");
+						   break;
+				case 'D' : s = decimalToBinary("13");
+						   break;
+				case 'E' : s = decimalToBinary("14");
+						   break;
+				case 'F' : s = decimalToBinary("15");
+						   break;
+				default : s = decimalToBinary(o[i]);
+			}
+			if(s.length%4===0)
+			ans+=s;
+			else if(s.length%4===1)
+			ans+="000"+s;
+			else if(s.length%4===2)
+			ans+="00"+s;
+			else if(s.length%4===3)
+			ans+="0"+s;
+		}
+		return ans;
+	}
+
+	const octToDecimal = (b)=>{
+		let num = 0;
+		let n = b.length;
+		let pow = 1;
+		for(let i =n-1; i>=0; i--){
+			num+=pow*parseInt(b[i]);
+			if(b[i]>='8')
+			return "";
+			pow*=8;
+		}
+		if(n===0)
+		return "";
+		else
+		return `${num}`;
+	}
+
+	const handleBinary = (e)=>{
+		let x = e.target.value;
+	
+		if(isNaN(binaryToDecimal(x)))
+		setDecimal("");
+		else
+		setDecimal(binaryToDecimal(x));
+
+		if(isNaN(binaryToOctal(x)))
+		setOct("");
+		else
+		setOct(binaryToOctal(x));
+
+		setHex(binaryToHex(x));
+
+		if(isNaN(x))
+		setBinary("");
+		else
+		setBinary(x);
+	}
+	const handleOct = (e)=>{
+		let x = e.target.value;
+	
+		if(isNaN(octToBinary(x)))
+		setBinary("");
+		else
+		setBinary(octToBinary(x));
+
+		if(isNaN(octToDecimal(x)))
+		setDecimal("");
+		else
+		setDecimal(octToDecimal(x));
+
+		if(isNaN(octToBinary(x)))
+		setHex("")
+		else
+		setHex(binaryToHex(octToBinary(x)));
+
+		if(isNaN(x))
+		setOct("");
+		else
+		setOct(x);
+	}
+	const handleDecimal = (e)=>{
+		let x = e.target.value;
+	
+		if(isNaN(decimalToBinary(x)))
+		setBinary("");
+		else
+		setBinary(decimalToBinary(x));
+
+		if(isNaN(decimalToBinary(x)))
+		setOct("");
+		else
+		setOct(binaryToOctal(decimalToBinary(x)));
+
+		if(isNaN(decimalToBinary(x)))
+		setHex("")
+		else
+		setHex(binaryToHex(decimalToBinary(x)));
+
+		if(isNaN(x))
+		setDecimal("");
+		else
+		setDecimal(x);
+		
+	}
+	const handleHex = (e)=>{
+		let x = e.target.value;
+	
+		if(isNaN(hexToBinary(x)))
+		setBinary("");
+		else
+		setBinary(hexToBinary(x));
+
+		if(isNaN(hexToBinary(x)))
+		setOct("");
+		else
+		setOct(binaryToOctal(hexToBinary(x)));
+
+		if(isNaN(hexToBinary(x)))
+		setDecimal("")
+		else
+		setDecimal(binaryToDecimal(hexToBinary(x)));
+
+		setHex(x);
+	}
 	return (
 		<StyledDiv light={light}>
-			<div className='screen'>
-				<div className='nav'>
-					<Link to='binary'>Binary</Link>
-					<Link to='decimal'>Decimal</Link>
-					<Link to='hex'>Hexadecimal</Link>
-					<Link to='octal'>Octal</Link>
+			<div className="card">
+				<h2>Binary</h2>
+				<div className="img">
+					<img src={bin} alt="binary"/>
 				</div>
-				<div className='component'>
-					<Routes><Route exact path='binary' element={<Binary />} />	</Routes>
-					<Routes><Route exact path='decimal' element={ <Decimal/> } />	</Routes>
-					<Routes><Route exact path='hex' element={<Hex />} />	</Routes>
-					<Routes><Route exact path='oct' element={<Oct />} />	</Routes>
-				</div>
+				<input type="text" onChange={handleBinary}  value={binary}  placeholder="Enter a value..."/>
 			</div>
-			<div className='buttons'>
-				{Object.keys(keys).map((key) => (
-					<button key={key} id={key} onClick={() => handleClick(key)}>
-						{keys[key]}
-					</button>
-				))}
+			<div className="card">
+				<h2>Octal</h2>
+				<div className="img">
+					<img src={ octa } alt="octadecimal"/>
+				</div>
+				<input type="text" onChange={handleOct}  value={oct}  placeholder="Enter a value..."/>
+			</div>
+			<div className="card">
+				<h2>Decimal</h2>
+				<div className="img">
+					<img src={dec} alt="decimal"/>
+				</div>
+				<input type="text" onChange={handleDecimal}  value={decimal}  placeholder="Enter a value..."/>
+			</div>
+			<div className="card">
+				<h2>Hexadecimal</h2>
+				<div className="img">
+					<img src={hexa} alt="hexadecimal"/>
+				</div>
+				<input type="text" onChange={handleHex}  value={hex}  placeholder="Enter a value..."/>
 			</div>
 		</StyledDiv>
 	);

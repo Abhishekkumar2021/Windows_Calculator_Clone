@@ -194,7 +194,7 @@ export default function Scientific() {
         setResult(result + "%");
         break;
       case "root":
-        setResult("sqrt");
+        setResult(result + "sqrt");
         break;
       case "clear":
         setResult("");

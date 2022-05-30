@@ -144,6 +144,14 @@ export default function Navbar() {
 							BMI
 						</Link>
 					</li>
+					<li>
+						<Link to='/areacal'>
+							{" "}
+							<AiOutlineAreaChart className='icon' />
+							Area 
+						</Link>
+					</li>
+					
 				</ul>
 				<ul className='convertor'>
 					<h1>Converters</h1>

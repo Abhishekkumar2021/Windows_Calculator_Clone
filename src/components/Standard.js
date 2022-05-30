@@ -17,8 +17,6 @@ import {
 import { BsDot } from "react-icons/bs";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 
-import { FaDivide, FaEquals, FaMinus, FaPlus, FaTimes } from "react-icons/fa";
-
 const keys = {
 	modulo: <p className='icon'>&#37;</p>,
 	root: <p className='icon'>&radic;</p>,
@@ -28,47 +26,45 @@ const keys = {
 	seven: <RiNumber7 className='icon' />,
 	eight: <RiNumber8 className='icon' />,
 	nine: <RiNumber9 className='icon' />,
-	divide: <FaDivide className='icon' />,
+	divide: <p className='icon'> &#247;</p>,
 	four: <RiNumber4 className='icon' />,
 	five: <RiNumber5 className='icon' />,
 	six: <RiNumber6 className='icon' />,
 
-	multiply: <FaTimes className='icon' />,
+	multiply: <p className='icon'> &#215;</p>,
 	one: <RiNumber1 className='icon' />,
 	two: <RiNumber2 className='icon' />,
 	three: <RiNumber3 className='icon' />,
-	add: <FaPlus className='icon' />,
+	add: <p className='icon'> &#43;</p>,
 	zero: <RiNumber0 className='icon' />,
 	period: <BsDot className='icon' />,
 
-	substract: <FaMinus className='icon' />,
-	equal: <FaEquals className='icon' />,
+	substract: <p className='icon'> &#8722;</p>,
+	equal: <p className='icon'> &#61;</p>,
 };
 const StyledDiv = styled.div`
-	padding: 20px;
 	width: 100%;
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	.screen {
-		padding: 10px;
+		padding: 15px;
 		margin: 10px 0;
 		height: 150px;
 		text-align: right;
 		font-size: 32px;
 	}
 	.buttons {
+		box-shadow:0 -10px 25px -5px rgb(0,0,0,0.1);
 		flex-grow: 1;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		grid-gap: 15px;
 		button {
 			border: none;
 			outline: none;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
 			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
-			border-radius: 10px;
-			box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
+			border:1px solid rgb(0,0,0,0.1);
 			font-size: 2rem;
 			transition: 0.3s ease all;
 			overflow: hidden;
@@ -85,14 +81,6 @@ const StyledDiv = styled.div`
 		#clear {
 			background: ${(props) =>
 				props.light ? "rgb(250, 80, 80,0.5)" : "rgb(200, 100, 20,0.7)"};
-		}
-	}
-	@media only screen and (max-width: 512px) {
-		.buttons {
-			grid-gap: 10px;
-			button{
-				border-radius: 20px;
-			}
 		}
 	}
 	@keyframes rotate {

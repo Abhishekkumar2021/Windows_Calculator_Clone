@@ -144,7 +144,7 @@ export default function BMI() {
 		const [ty, tm, td] = to.split("-");
 		setDifference({
 			year: Math.abs(ty - fy),
-			month: Math.abs(tm - fm),
+			month: (ty - fy )>0 ? (tm - fm + 12)%12 : (tm - fm + 12)%12,
 			days: Math.abs(td - fd),
 		});
 	};

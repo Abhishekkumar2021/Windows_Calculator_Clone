@@ -53,6 +53,7 @@ const StyledDiv = styled.div`
 		height: 150px;
 		text-align: right;
 		font-size: 32px;
+		overflow-x:scroll;
 	}
 	.buttons {
 		box-shadow:0 -10px 25px -5px rgb(0,0,0,0.1);

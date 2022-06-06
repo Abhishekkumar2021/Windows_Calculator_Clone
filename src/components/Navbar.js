@@ -28,6 +28,7 @@ import {
 	FaBalanceScaleRight,
 	FaTemperatureLow,
 	FaDatabase,
+	FaNeos,
 } from "react-icons/fa";
 
 const StyledNavbar = styled.nav`
@@ -149,6 +150,13 @@ export default function Navbar() {
 							{" "}
 							<AiOutlineAreaChart className='icon' />
 							Area 
+						</Link>
+					</li>
+					<li>
+						<Link to='/roman'>
+							{" "}
+							<FaNeos className='icon' />
+							Roman 
 						</Link>
 					</li>
 					

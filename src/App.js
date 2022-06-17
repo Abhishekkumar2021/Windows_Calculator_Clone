@@ -23,6 +23,7 @@ import Pressure from "./components/Pressure";
 import Angle from "./components/Angle";
 import Scientific from "./components/Scientific";
 import AreaCal from "./components/AreaCal";
+import Roman from "./components/Roman";
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -44,6 +45,7 @@ function App() {
 					<Route exact path='/programmer/*' element={<Programmer />} />
 					<Route exact path='/date' element={<Date />} />
 					<Route exact path='/areacal' element={<AreaCal />} />
+					<Route exact path='/roman' element={<Roman />} />
 					<Route exact path='/bmi' element={<BMI />} />
 					<Route exact path='/currency' element={<Currency />} />
 					<Route exact path='/volume' element={<Volume />} />

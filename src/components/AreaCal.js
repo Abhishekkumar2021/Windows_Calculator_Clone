@@ -52,6 +52,7 @@ color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};
         height:150%;
     }
 	input {
+		color-scheme: ${(props) => (props.light ? "light" : "dark")};
 			transition: 0.3s ease all;
 			padding: 10px;
 			color: ${({ light }) => (light ? "rgba(0, 0, 0, 0.781)" : "white")};

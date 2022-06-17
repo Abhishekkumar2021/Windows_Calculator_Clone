@@ -23,6 +23,8 @@ const StyledDiv = styled.div`
 
 		border-radius: 20px 0 0 20px;
 		input {
+			color-scheme: ${(props) => (props.light ? "light" : "dark")};
+
 			padding: 15px 20px;
 			border: none;
 			outline: none;

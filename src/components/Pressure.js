@@ -52,6 +52,8 @@ const StyledDiv = styled.div`
 		}
 		input,
 		select {
+			color-scheme: ${(props) => (props.light ? "light" : "dark")};
+
 			transition: 0.3s ease all;
 			padding: 10px 15px;
 			background: ${(props) => (props.light ? "white" : "#37383a")};
